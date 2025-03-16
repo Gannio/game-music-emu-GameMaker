@@ -68,7 +68,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-test_big_endian(WORDS_BIGENDIAN)
+# test_big_endian(WORDS_BIGENDIAN) Caused problems with Visual Studio compilation.
 
 if(MSVC)
     string(REGEX REPLACE "/W[3|4]" "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
@@ -113,3 +113,5 @@ if (GME_BUILD_EXAMPLES)
     add_subdirectory(player EXCLUDE_FROM_ALL)
     add_subdirectory(demo EXCLUDE_FROM_ALL)
 endif()
+
+message(STATUS "CMake file done.")

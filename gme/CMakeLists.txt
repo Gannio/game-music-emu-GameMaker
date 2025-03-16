@@ -7,6 +7,10 @@ if(GME_ZLIB)
     find_package(ZLIB QUIET)
 endif()
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
+
+find_package(SDL2)
+
 # List of source files required by libgme and any emulators
 # This is not 100% accurate (Fir_Resampler for instance) but
 # you'll be OK.
@@ -37,6 +41,14 @@ set(libgme_SRCS Blip_Buffer.cpp
                 blargg_config.h
                 blargg_endian.h
                 blargg_source.h
+				helpers.cpp
+				helpers.h
+				game_music_emu.cpp
+				Audio_Scope.cpp
+                Audio_Scope.h
+                Music_Player.cpp
+                Music_Player.h
+                player.cpp
                 )
 
 # Ay_Apu is very popular around here
@@ -351,6 +363,7 @@ macro(set_gme_props gme_target)
         PRIVATE "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"  # For gen_types.h
         INTERFACE "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>"
         INTERFACE "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+		${SDL2_INCLUDE_DIRS}
     )
 
     if(NOT MSVC)
@@ -384,7 +397,7 @@ if(GME_BUILD_SHARED)
         set_property(TARGET gme_shared APPEND PROPERTY LINK_DEPENDS "${generated_sym_file}")
     endif()
 
-    target_link_libraries(gme_shared PRIVATE gme_deps)
+    target_link_libraries(gme_shared PRIVATE gme_deps ${SDL2_LIBRARIES})
 
     if(HAVE_LIBM)
         target_link_libraries(gme_shared PRIVATE -lm)
@@ -431,7 +444,7 @@ if(GME_BUILD_STATIC)
 
     set_gme_props(gme_static)
 
-    target_link_libraries(gme_static PUBLIC gme_deps)
+    target_link_libraries(gme_static PUBLIC gme_deps ${SDL2_LIBRARIES})
 
     if(HAVE_LIBM)
         target_link_libraries(gme_static PUBLIC -lm)

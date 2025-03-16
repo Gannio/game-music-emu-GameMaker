@@ -66,3 +66,21 @@ gme_fixed_track_count
 # Since 0.6.5
 gme_seek_scaled
 gme_tell_scaled
+
+#Game Maker (Studio) Fork
+gme_GMS_NumTrack
+gme_GMS_StartTrack
+gme_GMS_MuteVoice
+gme_GMS_MuteVoices
+#Above uses a mask.
+gme_GMS_SetTempo
+gme_GMS_NumVoices
+gme_GMS_SetPosition
+gme_GMS_GetPosition
+gme_GMS_GetTrackLength
+gme_GMS_GetName
+gme_GMS_GetAuthor
+gme_GMS_GetCopyright
+gme_GMS_GetComment
+
+#Read, LoadBuffer, and Free commands have been removed since it's all taken care of inside the system instead.

@@ -1,3 +1,10 @@
+# Setup
+NOTE: Ignore below note, right now we'll use github actions to debug.
+I can't get the cmake stuff to actually generate a makefile, so I've found Visual Studio to work better instead.
+To set up on Windows, use visual studio (2019 perferably) to open the folder, it will recognize it as a cmake folder. You can right click the CMakeLists.txt file to generate the cache, build, and install, but you will likely need to install SDL2, make, mt.exe and rc.exe (You should have the latter two in your PC but may need to move their locations). Make sure to use 32-bit if you wish to compile for GMS1.x.
+
+If you already tried before using VS, you'll probably need to delete/rebuild the cache first.
+
 Game_Music_Emu 0.6.4: Game Music Emulators
 ------------------------------------------
 Game_Music_Emu is a collection of video game music file emulators that
