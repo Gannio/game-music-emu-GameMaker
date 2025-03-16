@@ -35,3 +35,14 @@ jobs:
           build/**
           build-nozlib/**
           build-static/**
+
+  download-artifacts:
+    name: Download Artifacts
+    runs-on: windows-latest
+    needs: build
+    steps:
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: build-artifacts-${{ matrix.configuration }}
+        path: downloaded-build
