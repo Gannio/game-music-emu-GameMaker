@@ -30,7 +30,6 @@ jobs:
     - name: Upload Artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: build-artifacts-${{ matrix.configuration }}
         path: |
           build/**
           build-nozlib/**
@@ -41,8 +40,7 @@ jobs:
     runs-on: windows-latest
     needs: build
     steps:
-    - name: Download Artifacts
+    - name: Download All Artifacts
       uses: actions/download-artifact@v3
       with:
-        name: build-artifacts-${{ matrix.configuration }}
         path: downloaded-build
